@@ -1,4 +1,4 @@
-module.exports.tinhThanh = [
+module.exports.maBuuChinhTinhThanh = [
     { ten: 'An Giang', maBuuChinh: '880000' },
     { ten: 'Bà Rịa Vũng Tàu', maBuuChinh: '790000' },
     { ten: 'Bạc Liêu', maBuuChinh: '260000' },
@@ -8,7 +8,7 @@ module.exports.tinhThanh = [
     { ten: 'Bến Tre', maBuuChinh: '930000' },
     { ten: 'Bình Dương', maBuuChinh: '590000' },
     { ten: 'Bình Định', maBuuChinh: '820000' },
-    { ten: 'Bình Phước', maBuuChinh: '830000   ' },
+    { ten: 'Bình Phước', maBuuChinh: '830000' },
     { ten: 'Bình Thuận', maBuuChinh: '800000' },
     { ten: 'Cà Mau', maBuuChinh: '970000' },
     { ten: 'Cao Bằng', maBuuChinh: '270000' },
