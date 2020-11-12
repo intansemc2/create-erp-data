@@ -62,3 +62,44 @@ module.exports.chonChiMucNgauNhien = (mangTienXuLi) => {
 module.exports.chonNgauNhien = (mangTienXuLi, mangDuLieuGoc) => {
     return mangDuLieuGoc[module.exports.chonChiMucNgauNhien(mangTienXuLi)];
 };
+
+/**
+ *
+ * @param mangDuLieuGoc
+ * @param cachLayTanSo
+ */
+module.exports.tienXuLiChiDinh = (mangDuLieuGoc, cachLayTanSo) => {
+    let mangTienXuLiChiDinh = mangDuLieuGoc.map((i) => cachLayTanSo(i));
+    for (let i = 1; i < mangTienXuLiChiDinh.length; i += 1) {
+        mangTienXuLiChiDinh[i] += mangTienXuLiChiDinh[i - 1];
+    }
+    return mangTienXuLiChiDinh;
+};
+
+/**
+ *
+ * @param mangTienXuLiChiDinh
+ */
+module.exports.chonChiMucNgauNhienChiDinh = (mangTienXuLiChiDinh) => {
+    let chiMucCuoi = mangTienXuLiChiDinh.length - 1;
+    let soDuocChon = Math.random() * mangTienXuLiChiDinh[chiMucCuoi];
+    for (let i = 0; i < mangTienXuLiChiDinh.length; i += 1) {
+        if (mangTienXuLiChiDinh[i] > soDuocChon) {
+            return i;
+        }
+    }
+    return chiMucCuoi;
+};
+
+/**
+ *
+ * @param mangDuLieuGoc
+ * @param tuyChon
+ */
+module.exports.chonNgauNhienChiDinh = (mangDuLieuGoc, tuyChon) => {
+    let mangTienXuLiChiDinh = null;
+    if (!Array.isArray(tuyChon)) mangTienXuLiChiDinh = module.exports.tienXuLiChiDinh(mangDuLieuGoc, tuyChon);
+    else mangTienXuLiChiDinh = tuyChon;
+
+    return mangDuLieuGoc[module.exports.chonChiMucNgauNhienChiDinh(mangTienXuLiChiDinh)];
+};

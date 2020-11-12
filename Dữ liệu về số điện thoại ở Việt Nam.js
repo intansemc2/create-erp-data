@@ -77,7 +77,7 @@ module.exports.coDinh = {
 module.exports.diDong = [
     { nhaMang: 'Viettel', cacDauSo: ['96', '97', '98', '86', '87', '88'] },
     { nhaMang: 'Mobiphone', cacDauSo: ['90', '93', '89'] },
-    { nhaMang: 'Vinaphone', cacDauSo: ['091', '94', '88'] },
+    { nhaMang: 'Vinaphone', cacDauSo: ['91', '94', '88'] },
     { nhaMang: 'Vietnamobile', cacDauSo: ['92', '93', '94', '95', '96', '97'] },
     { nhaMang: 'Gmobile', cacDauSo: ['99'] },
 ];

@@ -4,7 +4,7 @@ const duLieuSoDienThoai = require('./Dữ liệu về số điện thoại ở V
  * Tạo ra một số điện thoại cố định ngẫu nhiên
  * @param nhaMang tên nhà mạng, nếu tên nhà mạng không tồn tại thì sẽ được chọn ngẫu nhiên
  * @param tinhThanh tên tỉnh thành, nếu tên tỉnh thành không tồn tại thì sẽ được chọn ngẫu nhiên
- * @returns chuỗi chứa số điện thoại 
+ * @returns chuỗi chứa số điện thoại
  */
 module.exports.taoSoDienThoaiCoDinh = (nhaMang, tinhThanh) => {
     let soDienThoai = '0';
@@ -47,7 +47,7 @@ module.exports.taoSoDienThoaiCoDinh = (nhaMang, tinhThanh) => {
 /**
  * Tạo ra một số điện thoại di động ngẫu nhiên
  * @param nhaMang tên nhà mạng, nếu tên nhà mạng không tồn tại thì sẽ được chọn ngẫu nhiên
- * @returns chuỗi chứa số điện thoại 
+ * @returns chuỗi chứa số điện thoại
  */
 module.exports.taoSoDienThoaiDiDong = (nhaMang) => {
     let soDienThoai = '0';
@@ -61,12 +61,15 @@ module.exports.taoSoDienThoaiDiDong = (nhaMang) => {
         }
     }
     if (!cacDauSo) {
-        cacDauSo = duLieuSoDienThoai.coDinh.nhaMang[Math.floor(Math.random() * duLieuSoDienThoai.coDinh.nhaMang.length)].cacDauSo;
+        cacDauSo = duLieuSoDienThoai.diDong[Math.floor(Math.random() * duLieuSoDienThoai.diDong.length)].cacDauSo;
     }
     soDienThoai += cacDauSo[Math.floor(Math.random() * cacDauSo.length)];
 
     //Tao 7 so cuoi
     soDienThoai += `${Math.floor(Math.random() * 10000000)}`.padStart(7, '0');
+
+    //Them so 0 o dau
+    soDienThoai = `0${soDienThoai}`;
 
     return soDienThoai;
 };

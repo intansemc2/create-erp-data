@@ -1,5 +1,5 @@
 const duLieuHoVaTen = require('./Dữ liệu họ và tên người Việt');
-const choNgauNhienTanXuat = require('./Chọn ngẫu nhiên trong danh sách theo tần số xuất hiện');
+const choNgauNhien = require('./Chọn ngẫu nhiên trong danh sách theo tần số xuất hiện');
 
 /**
  * Tạo ra một tên người ngẫu nhiên
@@ -12,9 +12,9 @@ const choNgauNhienTanXuat = require('./Chọn ngẫu nhiên trong danh sách the
  * @returns Tên của một người được tạo ngẫu nhiên, "" nếu tạo thất bại
  */
 module.exports.taoTenNguoiNgauNhien = (tienXuLyHo = [], tienXuLyTen = [], tienXuLyTenDem = [], tyLeNguoiCoTenDem = 70, tyLeNguoiCoHaiHo = 50, hamKiemTraTrung) => {
-    if (!tienXuLyHo || tienXuLyHo == []) tienXuLyHo = choNgauNhienTanXuat.tienXuLy(duLieuHoVaTen.ho);
-    if (!tienXuLyTen || tienXuLyTen == []) tienXuLyTen = choNgauNhienTanXuat.tienXuLy(duLieuHoVaTen.ten);
-    if (!tienXuLyTenDem || tienXuLyTenDem == []) tienXuLyTenDem = choNgauNhienTanXuat.tienXuLy(duLieuHoVaTen.tenDem);
+    if (!tienXuLyHo || tienXuLyHo == []) tienXuLyHo = choNgauNhien.tienXuLy(duLieuHoVaTen.ho);
+    if (!tienXuLyTen || tienXuLyTen == []) tienXuLyTen = choNgauNhien.tienXuLy(duLieuHoVaTen.ten);
+    if (!tienXuLyTenDem || tienXuLyTenDem == []) tienXuLyTenDem = choNgauNhien.tienXuLy(duLieuHoVaTen.tenDem);
 
     let mangThanhPhanTen = [];
     let tenNguoiMoi = '';
@@ -23,13 +23,13 @@ module.exports.taoTenNguoiNgauNhien = (tienXuLyHo = [], tienXuLyTen = [], tienXu
         mangThanhPhanTen = [];
 
         //Tạo họ
-        let ho = choNgauNhienTanXuat.chonNgauNhien(tienXuLyHo, duLieuHoVaTen.ho);
+        let ho = choNgauNhien.chonNgauNhien(tienXuLyHo, duLieuHoVaTen.ho);
         mangThanhPhanTen.push(ho);
 
         if (Math.random() * 100 > tyLeNguoiCoHaiHo) {
-            let hoThuHai = choNgauNhienTanXuat.chonNgauNhien(tienXuLyHo, duLieuHoVaTen.ho);
+            let hoThuHai = choNgauNhien.chonNgauNhien(tienXuLyHo, duLieuHoVaTen.ho);
             while (hoThuHai == ho) {
-                hoThuHai = choNgauNhienTanXuat.chonNgauNhien(tienXuLyHo, duLieuHoVaTen.ho);
+                hoThuHai = choNgauNhien.chonNgauNhien(tienXuLyHo, duLieuHoVaTen.ho);
             }
 
             mangThanhPhanTen.push(hoThuHai);
@@ -37,15 +37,45 @@ module.exports.taoTenNguoiNgauNhien = (tienXuLyHo = [], tienXuLyTen = [], tienXu
 
         //Tạo tên đệm
         if (Math.random() * 100 > tyLeNguoiCoTenDem) {
-            mangThanhPhanTen.push(choNgauNhienTanXuat.chonNgauNhien(tienXuLyTenDem, duLieuHoVaTen.tenDem));
+            mangThanhPhanTen.push(choNgauNhien.chonNgauNhien(tienXuLyTenDem, duLieuHoVaTen.tenDem));
         }
 
         //Tạo tên
-        mangThanhPhanTen.push(choNgauNhienTanXuat.chonNgauNhien(tienXuLyTen, duLieuHoVaTen.ten));
+        mangThanhPhanTen.push(choNgauNhien.chonNgauNhien(tienXuLyTen, duLieuHoVaTen.ten));
 
         tenNguoiMoi = mangThanhPhanTen.map((item) => item.duLieu).join(' ');
         if (!hamKiemTraTrung) break;
         else if (!hamKiemTraTrung(tenNguoiMoi)) break;
     }
     return tenNguoiMoi;
+};
+
+module.exports.taoTenNguoiTheoSoLuong = (soLuongHo, soLuongTenDem, soLuongTen, hamKiemTraTrung) => {
+    let mangThanhPhanTen = [];
+    let tenNguoiMoi = '';
+
+    let i = null;
+    while (true) {
+        for (i = 0; i < soLuongHo; i += 1) {
+            mangThanhPhanTen.push(choNgauNhien.chonNgauNhienChiDinh(duLieuHoVaTen.ho, (t) => t.tanso));
+        }
+
+        for (i = 0; i < soLuongTenDem; i += 1) {
+            mangThanhPhanTen.push(choNgauNhien.chonNgauNhienChiDinh(duLieuHoVaTen.tenDem, (t) => t.tanso));
+        }
+
+        for (i = 0; i < soLuongTen; i += 1) {
+            mangThanhPhanTen.push(choNgauNhien.chonNgauNhienChiDinh(duLieuHoVaTen.ten, (t) => t.tanso));
+        }
+
+        tenNguoiMoi = mangThanhPhanTen.map((item) => item.duLieu).join(' ');
+        if (!hamKiemTraTrung) break;
+        else if (!hamKiemTraTrung(tenNguoiMoi)) break;
+    }
+
+    return tenNguoiMoi;
+};
+
+module.exports.taoTenNguoiTheoSoLuongTuDong = (hamKiemTraTrung) => {
+    return module.exports.taoTenNguoiTheoSoLuong(1, Math.floor(Math.random() * 3), 1, hamKiemTraTrung);
 };
