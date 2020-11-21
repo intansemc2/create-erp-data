@@ -35,16 +35,22 @@ module.exports.parse = (string) => {
     return result;
 };
 
-module.exports.stringify = (twoDArray) => {
+module.exports.stringify = (twoDArray, columnTypes) => {
     return twoDArray
         .map((row) =>
             row
-                .map((data) => {
+                .map((data, i) => {
                     let readyString = `${data}`;
 
                     if (readyString.indexOf(',') != -1 || readyString.indexOf('"') != -1) {
                         readyString = readyString.replace(/"/g, '""');
                         readyString = `"${readyString}"`;
+                    }
+
+                    if (columnTypes && columnTypes[i]) {
+                        if (columnTypes[i] == 'string') {
+                            if (readyString.charAt(0) != '"') readyString = `"${readyString}"`;
+                        }
                     }
 
                     return readyString;
