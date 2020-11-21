@@ -69,7 +69,7 @@ module.exports.taoSoDienThoaiDiDong = (nhaMang) => {
     soDienThoai += `${Math.floor(Math.random() * 10000000)}`.padStart(7, '0');
 
     //Them so 0 o dau
-    soDienThoai = `0${soDienThoai}`;
+    soDienThoai = `${soDienThoai}`;
 
     return soDienThoai;
 };

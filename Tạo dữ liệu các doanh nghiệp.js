@@ -18,13 +18,13 @@ for (let i = 0; i <= SO_LUONG; i += 1) {
     let dia_chi_1 = taoDiaChi.taoMotDiaChiMang();
     let dia_chi_2 = taoDiaChi.chuyenDiaChiMang(dia_chi_1);
     let thanh_pho = dia_chi_1[dia_chi_1.length - 1].ten;
-    let tinh_thanh_pho = dia_chi_1[dia_chi_1.length - 1].ten;
+    let tinh_thanh_pho = '';
     let ma_buu_dien = '';
     let quoc_gia = '84';
     let ma_so_thue = '';
     let chuc_vu = 'Chủ shop';
     let di_dong_1 = taoSDT.taoSoDienThoaiDiDong();
-    let di_dong_2 = di_dong_1;
+    let di_dong_2 = taoSDT.taoSoDienThoaiDiDong();
     let ten_dang_nhap = `${name.replace(/[^a-zA-Z]/g, '')}${Math.random() < 0.3 ? Math.floor(Math.random() * 100) : ''}@gmail.com`;
     let xung_ho = Math.random() < 0.5 ? 'Cô' : 'Anh';
     let tag = '';
@@ -41,7 +41,7 @@ for (let i = 0; i <= SO_LUONG; i += 1) {
     let duLieuMoi = [company_type, name, ten_cong_ty, kieu_dia_chi, dia_chi_1, dia_chi_2, thanh_pho, tinh_thanh_pho, ma_buu_dien, quoc_gia, ma_so_thue, chuc_vu, di_dong_1, di_dong_2, ten_dang_nhap, xung_ho, tag, nhan_vien_kinh_doanh, o_field_input_860, cong_ty, khoan_phai_tra, khoan_phai_thu];
     duLieuBang.push(duLieuMoi);
 
-    console.log('Xong: ', i, ', duLieu: ', JSON.stringify(duLieuMoi));
+    console.log('Xong: ', i);
 }
 
 ghiCSV.ghiCSV('Kết quả danh sách thông tin công ty.csv', CSV_COLUMNS, duLieuBang);

@@ -4,7 +4,7 @@ const duLieuHoVaTen = require('./Dữ liệu họ và tên người Việt');
 const chonNgauNhien = require('./Chọn ngẫu nhiên trong danh sách theo tần số xuất hiện');
 const taoTenMotNguoi = require('./Tạo tên của một người ngẫu nhiên');
 
-module.exports.taoMotSoNha = (soLonNhat = 1000, soNhoNhat = 0) => {
+module.exports.taoMotSoNha = (soLonNhat = 1000, soNhoNhat = 1) => {
     return { ten: Math.floor(Math.random() * (soLonNhat - soNhoNhat) + soNhoNhat), loai: 'Số' };
 };
 
@@ -60,7 +60,7 @@ module.exports.taoMotDiaChiMang = () => {
 
     let mucHienTai = duLieuHanhChinh.hanhChinh;
     while (true) {
-        if (!mucHienTai || (Array.isArray(mucHienTai.thanhPhan) && mucHienTai.length <= 0)) break;
+        if (!mucHienTai || (Array.isArray(mucHienTai.thanhPhan) && mucHienTai.thanhPhan.length <= 0)) break;
         let chon = chonNgauNhien.chonNgauNhienChiDinh(mucHienTai, (i) => i.danSo);
         thanhPhanDiaChi.push({ ten: chon.ten, loai: chon.loai });
 

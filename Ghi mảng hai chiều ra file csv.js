@@ -25,7 +25,10 @@ module.exports.ghiCSV = (tenFile, tenCot, duLieuBang) => {
                     if (chuoiDuLieu.indexOf(',') != -1) {
                         if (chuoiDuLieu.indexOf(`"`) != -1) return `"${chuoiDuLieu.replace(`"`, '')}"`;
                         else return `"${chuoiDuLieu}"`;
-                    } else return `${chuoiDuLieu}`;
+                    } else {
+                        if (typeof chuoiDuLieu == 'string') return `"${chuoiDuLieu}"`;
+                        else return `${chuoiDuLieu}`;
+                    }
                 })
                 .join(',')
         )
