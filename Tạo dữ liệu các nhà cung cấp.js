@@ -11,8 +11,8 @@ const taoSDT = require('./Tạo một số điện thoại ngẫu nhiên');
 
 const loaiBoDau = require('./Loai bỏ dấu trong chuỗi');
 
-const CSV_COLUMNS = ['name', 'street', 'street2', 'city', 'state_id', 'zip', 'country_id', 'phone', 'mobile', 'email', 'website', 'lang'];
-const CSV_COLUMN_TYPES = ['string', 'string', 'string', 'string', 'string', 'string', 'string', 'string', 'string', 'string', 'string', 'string'];
+const CSV_COLUMNS = ['name', 'street', 'street2', 'city', 'state_id', 'zip', 'country_id', 'phone', 'mobile', 'email', 'website', 'lang', 'Nhân viên kinh doanh', 'Bảng giá', 'Tiền tệ nhà cung cấp', 'Khoản phải thu', 'Khoản phải trả'];
+const CSV_COLUMN_TYPES = ['string', 'string', 'string', 'string', 'string', 'string', 'string', 'string', 'string', 'string', 'string', 'string', 'string', 'string', 'string', 'string', 'string'];
 
 const SO_LUONG = 1000;
 
@@ -31,13 +31,19 @@ for (let i = 0; i <= SO_LUONG; i += 1) {
     let website = `${loaiBoDau.loaiBoDau(name).replace(/ /g, '').toLowerCase()}.vn`;
     let lang = `"vi_VN"`;
 
+    let nhanVienKinhDoanh = 'Admin UIT.IS336.L12.4';
+    let bangGia = 'Bảng giá niêm yết (VND)';
+    let tienTeNhaCungCap = 'VND';
+    let khoanPhaiThu = '131 Khoản phải thu của khách hàng';
+    let khoanPhaiTra = '331 Phải trả cho người bán';
+
     street = taoDiaChi.chuyenDiaChiMang(street);
     street2 = taoDiaChi.chuyenDiaChiMang(street2);
     city = taoDiaChi.chuyenDiaChiMang([city]);
 
-    let duLieuMoi = [name, street, street2, city, state_id, zip, country_id, phone, mobile, email, website, lang];
+    let duLieuMoi = [name, street, street2, city, state_id, zip, country_id, phone, mobile, email, website, lang, nhanVienKinhDoanh, bangGia, tienTeNhaCungCap, khoanPhaiThu, khoanPhaiTra];
     duLieuBang.push(duLieuMoi);
 }
 duLieuBang.unshift(CSV_COLUMNS);
 
-fs.writeFileSync('Kết qủa danh sách thông tin đối tác.csv', CSV.stringify(duLieuBang, CSV_COLUMN_TYPES), { encoding: 'utf-8' });
+fs.writeFileSync('Kết qủa danh sách thông tin nhà cung cấp.csv', CSV.stringify(duLieuBang, CSV_COLUMN_TYPES), { encoding: 'utf-8' });

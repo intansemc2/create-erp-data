@@ -6,7 +6,7 @@ const ghiCSV = require('./Ghi mảng hai chiều ra file csv');
 
 const CSV_COLUMNS = ['company_type', 'name', 'Tên công ty', 'Kiểu địa chỉ', 'Địa chỉ', 'Địa chỉ', 'Thành phố', 'Tỉnh/Thành phố', 'Mã bưu điện', 'Quốc gia', 'Mã số thuế', 'Chức vụ', 'Di động', 'Di động', 'Tên đăng nhập', 'Xưng hô', 'Tag', 'Nhân viên kinh doanh', 'o_field_input_860', 'Công ty', 'Khoản phải trả', 'Khoản phải thu'];
 
-const SO_LUONG = 10000;
+const SO_LUONG = 1000;
 
 let duLieuBang = [];
 for (let i = 0; i <= SO_LUONG; i += 1) {
